@@ -9,14 +9,34 @@ exports.createBug = async (req, res, next) => {
 
 }
 
-exports.updateBug = (req, res, next) => {
-    res.send('update bug')
+exports.updateBug = async (req, res, next) => {
+    let bug = await Bug.findById(req.params.id)
 
+    if (!bug) {
+        return 'bug not found'
+    }
+
+    bug = await Bug.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators: true})
+
+    res.status(201).json({
+        status: true,
+        data: bug,
+    })
 }
 
-exports.deleteBug = (req, res, next) => {
-    res.send('delete bug')
+exports.deleteBug = async (req, res, next) => {
+    let bug = await Bug.findById(req.params.id)
 
+    if (!bug) {
+        return 'bug not found'
+    }
+
+    bug = await Bug.remove()
+
+    res.status(201).json({
+        status: true,
+        data: {},
+    })
 }
 
 exports.getAllBugs = (req, res, next) => {
