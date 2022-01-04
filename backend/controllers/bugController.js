@@ -1,7 +1,11 @@
 const Bug = require('../models/Bug')
 
-exports.createBug = (req, res, next) => {
-    res.send('create bug')
+exports.createBug = async (req, res, next) => {
+    const bug = await Bug.create(req.body)
+    res.status(201).json({
+        success: true,
+        data: bug
+    })
 
 }
 
