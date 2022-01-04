@@ -9,6 +9,7 @@ const app = express();
 app.use(express.json())
 
 //Routes
+app.use('/api/v1/bugs', require('./routes/bugRoutes'))
 
 //Error Handler
 
