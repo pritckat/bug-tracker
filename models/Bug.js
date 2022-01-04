@@ -13,13 +13,20 @@ const bugSchema = new mongoose.Schema({
     severity: {
         type: Number,
         required: [true, 'Please rate the severity of the issue'],
+        default: 3,
     },
     created: {
         type: Date,
+        default: Date.now,
     },
     lastUpdated: {
         type: Date,
+        default: Date.now,
     },
+    closed: {
+        type: Boolean,
+        default: false,
+    }
 })
 
 const Bug = mongoose.model('Bug', bugSchema)
