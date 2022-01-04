@@ -39,6 +39,10 @@ exports.deleteBug = async (req, res, next) => {
     })
 }
 
-exports.getAllBugs = (req, res, next) => {
-    res.send('get all bugs')
+exports.getAllBugs = async (req, res, next) => {
+    let bugs = await Bug.find()
+    res.status(200).json({
+        status: true,
+        data: bugs
+    })
 }
